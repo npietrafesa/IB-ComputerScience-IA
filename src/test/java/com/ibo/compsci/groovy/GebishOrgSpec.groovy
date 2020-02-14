@@ -2,9 +2,9 @@ package com.ibo.compsci.groovy
 
 import geb.spock.GebSpec
 
-class test extends GebSpec{
+class GebishOrgSpec extends GebSpec {
 
-    def "can go to google"() {
+    def "Is on gebish homepage"() {
         when:
         to GebishOrgHomePage
 
