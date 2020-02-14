@@ -103,7 +103,6 @@
                     <groupId>org.gebish</groupId>
                     <artifactId>geb-core</artifactId>
                 </exclusion>
-
                 <exclusion>
                     <groupId>org.codehaus.groovy</groupId>
                     <artifactId>groovy-all</artifactId>
@@ -123,6 +122,12 @@
             <artifactId>threeten-extra</artifactId>
             <version>1.4</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-edge-driver</artifactId>
+            <version>4.0.0-alpha-2</version>
         </dependency>
     </dependencies>
 
