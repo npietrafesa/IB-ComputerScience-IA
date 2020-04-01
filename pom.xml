@@ -39,9 +39,15 @@
             <version>${gebVersion}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!--  <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-edge-driver</artifactId>
+            <version>${seleniumVersion}</version>
+            <scope>test</scope>
+        </dependency> -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
             <version>${seleniumVersion}</version>
             <scope>test</scope>
         </dependency>
@@ -102,10 +108,15 @@
                 <configuration>
                     <drivers>
                         <driver>
-                            <name>msedgedriver</name>
-                            <version>83.0.471.0</version>
+                            <name>chromedriver</name>
+                            <version>2.45.0</version>
                             <platform>windows</platform>
                         </driver>
+                        <!--  <driver>
+                              <name>msedgedriver</name>
+                              <version>83.0.471.0</version>
+                              <platform>windows</platform>
+                          </driver> -->
                     </drivers>
                 </configuration>
             </plugin>

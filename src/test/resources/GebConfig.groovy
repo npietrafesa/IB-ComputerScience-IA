@@ -10,18 +10,6 @@ File findDriver() {
     def executable = new ExecutableFinder().find("msedgedriver")
     if (executable) {
         new File(executable)
-    } else {
-        new File("drivers").listFiles().findAll {
-            !it.name.endsWith(".version")
-        }.find {
-            if (IS_OS_LINUX) {
-                it.name.contains("linux")
-            } else if (IS_OS_MAC) {
-                it.name.contains("mac")
-            } else if (IS_OS_WINDOWS) {
-                it.name.contains("windows")
-            }
-        }
     }
 }
 
@@ -40,4 +28,3 @@ waiting {
 atCheckWaiting = true
 
 baseUrl = "https://www.qa2.showtime.com"
-//baseUrl = "https://www.qa2.showtime.com"
