@@ -1,10 +1,8 @@
-
-
 import geb.spock.GebSpec
 
 class GebishOrgSpec extends GebSpec {
 
-    def "Is on gebish homepage"() {
+    def "can get to the current Book of Geb"() {
         when:
         to GebishOrgHomePage
 
@@ -20,5 +18,4 @@ class GebishOrgSpec extends GebSpec {
         then:
         at TheBookOfGebPage
     }
-
 }
