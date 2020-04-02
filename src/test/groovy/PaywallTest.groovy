@@ -1,6 +1,5 @@
 import geb.spock.GebSpec
 import org.openqa.selenium.Dimension
-import org.openqa.selenium.Point
 import spock.lang.Ignore
 import spock.lang.Stepwise
 import spock.lang.Unroll
@@ -12,7 +11,7 @@ class PaywallTest extends GebSpec {
         driver.manage().window().setSize(new Dimension(1920, 1233))
     }
 
-    def "Is on Paywall Page"() {
+    def "Ensure that on Paywall Page"() {
         when:
         to ShoPaywallPage
 
@@ -23,7 +22,7 @@ class PaywallTest extends GebSpec {
     }
 
     @Unroll
-    def "Ensure that #pageW page of 'see whats on' section loads"() {
+    def "Ensure that #pageW section of 'see whats on' page works"() {
         setup:
         waitFor { $("#nav-whatson") }.click()
         sleep(1000)
@@ -52,7 +51,7 @@ class PaywallTest extends GebSpec {
     }
 
     @Unroll
-    def "See that #devX page of 'ways to watch' works"() {
+    def "Ensure that #devX section of 'ways to watch' page works"() {
         setup:
         waitFor { $("#nav-where").click() }
 
@@ -76,11 +75,12 @@ class PaywallTest extends GebSpec {
         4    | "computers" || "on your"
     }
 
-    def "See that 'whats included' page works"() {
+    def "Ensure 'whats included' page works"() {
         setup:
         waitFor { $("#nav-included") }.click()
 
         when:
+        sleep(1000)
         $("#fd-whats-included div.footer-links span.learn-more a").click()
         sleep(1000)
 
@@ -93,17 +93,42 @@ class PaywallTest extends GebSpec {
 
         when:
         $("#fd-whats-included table tbody tr:nth-child(3) td:nth-child(1) p a").click()
-        sleep(3000)
+        sleep(2000)
 
         then:
-        at ShoSupportedDevicesPage
+        withWindow({ title == "What devices can I use to watch the SHOWTIME streaming service? – HELP CENTER" }, close: true) {
+            at ShoSupportedDevicesPage
+        }
 
-        when:
-        withWindow({ ShoSupportedDevicesPage }) { close() }
-
-        then:
+        expect:
         at ShoPaywallPage
 
     }
 
+    def "Ensure that 'ways to buy' page works"() {
+        sleep(1000)
+        when:
+        waitFor { $("#page-paywall-frontdoor div.frontdoor-content-wrapper div:nth-child(1) div div:nth-child(1) ul li.hide-mobile a").click() }
+        sleep(2000)
+
+        then:
+        withWindow({ title == "Order SHOWTIME Now" }, close: true) {
+            at ShoBuyPage
+        }
+
+        expect:
+        at ShoPaywallPage
+
+    }
+
+    def "Go to login page"() {
+        when:
+        js.exec(0, -100, "window.scroll(arguments[0], arguments[1])")
+
+        and:
+        waitFor { $("a.signin").click() }
+
+        then:
+        at ShoLoginPage
+    }
 }
