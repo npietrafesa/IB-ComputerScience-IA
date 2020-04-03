@@ -1,6 +1,5 @@
 import geb.spock.GebSpec
 import org.openqa.selenium.Dimension
-import spock.lang.Ignore
 import spock.lang.Stepwise
 import spock.lang.Unroll
 
@@ -17,22 +16,25 @@ class PaywallTest extends GebSpec {
 
         then:
         at ShoPaywallPage
-        assert $("div.modal")
+        $("div.modal").displayed
         $("div.modal button.close").click()
+
+        expect:
+        !$("div.modal").displayed
     }
 
     @Unroll
-    def "Ensure that #pageW section of 'see whats on' page works"() {
+    def "Ensure that #expectedPage section of 'see whats on' page works"() {
         setup:
         waitFor { $("#nav-whatson") }.click()
         sleep(1000)
 
         when:
-        $("#fd-whats-on > div:nth-child(2) > div > div:nth-child($numW) > div > div.content > a.cta").click()
+        $("#fd-whats-on div:nth-child(2) div div:nth-child($testNumber) div div.content a.cta").click()
         sleep(1000)
 
         then:
-        $("div.content-header h1.title.desktop").text().contains(pageW)
+        $("div.content-header h1.title.desktop").text().contains(expectedPage)
 
         when:
         $("span.close").click()
@@ -42,37 +44,37 @@ class PaywallTest extends GebSpec {
 
 
         where:
-        numW || pageW
-        1    || "SERIES"
-        2    || "MOVIES"
-        3    || "SPORTS"
-        4    || "LIVE"
-        5    || "FREE"
+        testNumber || expectedPage
+        1          || "SERIES"
+        2          || "MOVIES"
+        3          || "SPORTS"
+        4          || "LIVE"
+        5          || "FREE"
     }
 
     @Unroll
-    def "Ensure that #devX section of 'ways to watch' page works"() {
+    def "Ensure that #device section of 'ways to watch' page works"() {
         setup:
         waitFor { $("#nav-where").click() }
 
         when:
-        $("#devices-$devX div.clickable span span.cta-label").click()
+        $("#devices-$device div.clickable span span.cta-label").click()
         sleep(1000)
 
         then:
-        $("#devices-$devX div.device-list h1").text().contains(pageX)
+        $("#devices-$device div.device-list h1").text().contains(expectedText)
 
         when:
-        $("#devices-$devX div.device-list a.close").click()
+        $("#devices-$device div.device-list a.close").click()
 
         then:
-        !$("#devices$devX > div.device-list")
+        !$("#devices$device > div.device-list")
 
         where:
-        numX | devX        || pageX
-        2    | "tv"        || "TV with"
-        3    | "mobile"    || "VR with"
-        4    | "computers" || "on your"
+        device      || expectedText
+        "tv"        || "TV with"
+        "mobile"    || "VR with"
+        "computers" || "on your"
     }
 
     def "Ensure 'whats included' page works"() {

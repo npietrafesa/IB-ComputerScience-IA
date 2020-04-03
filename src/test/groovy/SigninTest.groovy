@@ -19,9 +19,6 @@ class SigninTest extends GebSpec {
 
     def "Go to login page"() {
         when:
-        js.exec(0, -100, "window.scroll(arguments[0], arguments[1])")
-
-        and:
         waitFor { $("a.signin").click() }
 
         then:

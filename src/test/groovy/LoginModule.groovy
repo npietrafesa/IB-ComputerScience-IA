@@ -9,9 +9,10 @@ class LoginModule extends Module {
     }
 
     void logIntoSite() {
+        User user = new User()
         form.with {
-            email = "IBCompSci@testing.showtime.net"
-            password = "ibcompsci1"
+            email = user.getEmail()
+            password = user.getPassword()
             button().click()
         }
     }
