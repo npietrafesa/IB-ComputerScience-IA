@@ -7,7 +7,7 @@ import spock.lang.Unroll
 class PaywallTest extends GebSpec {
 
     void setupSpec() {
-        driver.manage().window().setSize(new Dimension(1920, 1233))
+        driver.manage().window().setSize(new Dimension(1920, 1080))
     }
 
     def "Ensure that on Paywall Page"() {

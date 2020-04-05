@@ -3,11 +3,11 @@ class User {
     private email = "IBCompSci@testing.showtime.net"
     private password = "ibcompsci1"
 
-    getEmail() {
+    public getEmail() {
         return email
     }
 
-    getPassword() {
+    public getPassword() {
         return password
     }
 
