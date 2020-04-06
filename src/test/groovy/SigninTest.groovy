@@ -13,7 +13,7 @@ class SigninTest extends GebSpec {
 
         then:
         at ShoPaywallPage
-        assert $("div.modal")
+         $("div.modal")
         $("div.modal button.close").click()
     }
 
@@ -35,6 +35,22 @@ class SigninTest extends GebSpec {
         then:
         at ShoHomePage
 
+    }
+
+    def "Logout of site"() {
+        when:
+        $("#account-menu a").jquery.mouseover()
+
+        then:
+        $("#account-menu div").displayed
+
+        sleep(1000)
+
+        when:
+        $("#account-menu div ul li:nth-child(9) a").click()
+
+        then:
+        at ShoPaywallPage
     }
 
 }

@@ -1,0 +1,1 @@
+mvn -Dtest=PaywallTest,SigninTest,MoviesTest test

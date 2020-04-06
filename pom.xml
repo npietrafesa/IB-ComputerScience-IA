@@ -6,7 +6,7 @@
 
     <groupId>IBCOMPSCI</groupId>
     <artifactId>IA-test</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>RELEASE-1.0</version>
 
     <properties>
         <gebVersion>3.4</gebVersion>

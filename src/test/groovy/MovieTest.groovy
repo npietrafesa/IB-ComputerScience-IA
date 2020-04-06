@@ -51,6 +51,7 @@ class MovieTest extends GebSpec {
 
         then:
         waitFor { $("video#player-video").hasClass("js-player-video") }
+        sleep(2000)
 
         when:
         $("#player-video-overlay button.player-close-button").click()

@@ -11,15 +11,15 @@ class PaywallTest extends GebSpec {
     }
 
     def "Ensure that on Paywall Page"() {
-        when:
+        when: "Go to ShoPayWallPage"
         to ShoPaywallPage
 
-        then:
+        then: "Ensure you're at PaywallPage and that pop is displayed, then close it"
         at ShoPaywallPage
         $("div.modal").displayed
         $("div.modal button.close").click()
 
-        expect:
+        expect: "Make sure the popup is closed"
         !$("div.modal").displayed
     }
 
@@ -43,7 +43,7 @@ class PaywallTest extends GebSpec {
         !$("div.content-header h1.title.desktop")
 
 
-        where:
+        where: "Repeat for each child until finished, then move on"
         testNumber || expectedPage
         1          || "SERIES"
         2          || "MOVIES"
