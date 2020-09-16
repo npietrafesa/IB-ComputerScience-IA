@@ -1,7 +1,7 @@
 class User {
 
-    private email = "IBCompSci@testing.showtime.net"
-    private password = "ibcompsci1"
+    private email = "placeholder@email.com"
+    private password = "placeholder"
 
     public getEmail() {
         return email
